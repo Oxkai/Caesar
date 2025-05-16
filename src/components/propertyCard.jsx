@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function PropertyCard() {
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+
+  
 
   // Function to close the popup
   const handleClose = () => {
@@ -83,79 +88,14 @@ function PropertyCard() {
         {/* Button Section */}
         <div className="flex flex-row items-start h-[35px] gap-[6px] self-stretch">
           <button
-            onClick={() => setShowPopup(true)}
+            onClick={() => navigate("/PropertyDetails")}
             className="flex-grow flex-shrink-0 basis-0 flex justify-center items-center self-stretch rounded-[1.83px] bg-[#04312C]"
           >
             <span className="text-[#25D0AB] text-center font-['Amina'] text-base leading-6 capitalize">
-              Learn More
+              More
             </span>
           </button>
           
-
-          {showPopup && (
-            <div
-              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-50"
-              onClick={handleClose}
-            >
-              <div
-                className="flex flex-row w-[393px] p-2.5 items-center gap-2 bg-black"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Left Border Column */}
-                <div className="flex w-[4px] flex-col items-center gap-2 shrink-0 self-stretch">
-                  <div className="h-1 w-full bg-[#A0A0A0]" />
-                  <div className="flex flex-row w-0.5 items-center gap-2.5 flex-grow flex-shrink-0 basis-0 bg-[#1C1C1C]" />
-                  <div className="h-1 w-full bg-[#A0A0A0]" />
-                </div>
-
-                {/* Main Content */}
-                <div className="flex flex-col items-center flex-grow flex-shrink-0 basis-0">
-                  <div className="h-0.5 w-full bg-[#1C1C1C]" />
-
-                  {/* Form Section */}
-                  <div className="py-8 px-5 flex flex-col justify-center items-start gap-3.5">
-                    <h2 className="w-full text-[#25D0AB] font-['Amina'] text-3xl font-normal leading-9">
-                      Enter the amount u want to bet?
-                    </h2>
-
-                    <p className="w-[279px] text-white/60 font-['Amina'] text-base font-normal leading-7">
-                      Please enter the amount you want to invest
-                    </p>
-
-                    {/* Input Field */}
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      placeholder="Enter The Amount"
-                      className="w-[319px] h-12 px-4 border border-[#353535] rounded text-white placeholder-[#353535] font-['Amina'] text-base font-normal leading-8 capitalize outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                    />
-
-                    {/* Bet Button */}
-                    <button className="flex flex-row w-[319px] h-12 justify-center items-center gap-3 rounded bg-white">
-                      <span className="text-black text-center font-['Amina'] text-xl font-normal leading-8 capitalize">
-                        BET
-                      </span>
-                    </button>
-
-                    {/* Terms and Conditions */}
-                    <p className="w-[319px] text-white/40 text-center font-['Amina'] text-xs font-normal leading-7">
-                      Terms and conditions
-                    </p>
-                  </div>
-
-                  <div className="h-0.5 w-full bg-[#1C1C1C]" />
-                </div>
-
-                {/* Right Border Column */}
-                <div className="flex w-[4px] flex-col items-center gap-2 shrink-0 self-stretch">
-                  <div className="h-1 w-full bg-[#A0A0A0]" />
-                  <div className="flex flex-row w-0.5 items-center gap-2.5 flex-grow flex-shrink-0 basis-0 bg-[#1C1C1C]" />
-                  <div className="h-1 w-full bg-[#A0A0A0]" />
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

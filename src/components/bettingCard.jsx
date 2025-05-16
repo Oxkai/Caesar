@@ -101,12 +101,12 @@ function BettingCard() {
             onClick={() => setShowPopup(true)}
             className="flex-grow flex-shrink-0 basis-0 flex justify-center items-center self-stretch rounded-[1.83px] bg-[#04312C]"
           >
-            <span className="text-[#25D0AB] text-center font-['Amina'] text-base leading-6 capitalize">
+            <span className="text-[#25D0AB] text-center font-['Rajdhani'] text-[16px] not-italic font-semibold leading-[24px] capitalize">
               YES
             </span>
           </button>
           <button className="flex-grow flex-shrink-0 basis-0 flex justify-center items-center self-stretch rounded-[1.83px] bg-[#04312C]">
-            <span className="text-[#25D0AB] text-center font-['Amina'] text-base leading-6 capitalize">
+            <span className="text-[#25D0AB] text-center font-['Rajdhani'] text-[16px] not-italic font-semibold leading-[24px] capitalize">
               NO
             </span>
           </button>

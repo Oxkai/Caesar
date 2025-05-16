@@ -31,8 +31,8 @@ const Bet = () => {
             <div className="flex flex-row h-9 justify-end items-center">
               {/* ETH Balance */}
               <div className="flex flex-row py-1.5 px-3 justify-center items-center h-full rounded bg-[#282828]">
-                <span className="text-white text-center  font-['Amina'] text-[14px] font-normal leading-[11px] capitalize">
-                  5.465 ETH
+                <span className="text-white text-center font-['rajdhani'] text-[16px] not-italic font-semibold leading-[13px] capitalize">
+                  4.465 ETH
                 </span>
               </div>
               
@@ -47,7 +47,11 @@ const Bet = () => {
         </div>
         <div className='flex justify-between items-start content-start gap-[10.561px] self-stretch flex-wrap'>
           <BettingCard/>
-         <BettingCard/>
+          <BettingCard/>
+          <BettingCard/>
+          <BettingCard/>
+          <BettingCard/>
+          <BettingCard/>
           <BettingCard/>
           <BettingCard/>
         </div>
