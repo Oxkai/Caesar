@@ -238,13 +238,13 @@ const PropertyDetails = () => {
             {/* Investment Amount */}
             <div className="w-[295px] py-4 flex flex-col items-center gap-4">
               <h2 className="self-stretch text-white text-center font-['Amina'] text-4xl font-normal leading-[27.871px]">
-                 ETH
+                10 ETH
               </h2>
               <div className="w-[269px] h-1.5 px-0.5 flex flex-col items-start gap-2.5 bg-[#1C1C1C]">
-                <div className="w-[103.983px] h-1.5 flex-shrink-0 bg-[#25D0AB]" />
+                <div className="w-[60.983px] h-1.5 flex-shrink-0 bg-[#25D0AB]" />
               </div>
               <p className="self-stretch text-white text-center font-['Amina'] text-sm font-normal leading-[27.871px]">
-                Raised 5.463 ETH of 10 ETH
+                Raised 2.01 ETH of 10 ETH
               </p>
             </div>
 
@@ -302,7 +302,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      $10,00,000
+                      10 ETH
                     </p>
                   </div>
                 </div>
@@ -315,7 +315,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      5000
+                      100000
                     </p>
                   </div>
                 </div>
@@ -328,7 +328,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      12%
+                      10%
                     </p>
                   </div>
                 </div>
@@ -344,7 +344,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      30
+                      5
                     </p>
                   </div>
                 </div>

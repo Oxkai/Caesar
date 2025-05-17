@@ -22,7 +22,7 @@ const Home = () => {
             ENTER THE <span className="text-[#25D0AB]">ARENA! </span>
           </h1>
           <p className="w-full max-w-[891px] text-white/80 text-center font-['Amina'] text-[18px] font-normal leading-6">
-            Join the world's most competitive online hackathons, where elite crypto builders launch startups on Solana. Select hackathon winners are accepted into Colosseum's accelerator to establish their products,
+            Caesar is a blockchain-powered platform unlocking access to tokenized real-world assets, enabling anyone to invest, trade, and own fractions of assets once reserved for institutions
           </p>
         </div>
         <div className="flex flex-row items-start gap-4">
