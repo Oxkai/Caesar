@@ -1,7 +1,11 @@
 
 import React from 'react'
-import BettingCard from '../components/bettingCard'
-import PropertyCard from '../components/propertyCard'
+import BettingCard from '../components/bettingCards/bettingCard'
+import PropertyCard from '../components/CARD/propertyCard'
+import myImage from '../assets/5.png'
+import BettingCard3 from '../components/bettingCards/bettingCard3'
+import BettingCard2 from '../components/bettingCards/bettingCard2'
+import BettingCard1 from '../components/bettingCards/bettingCard1'
 
 
 const Bet = () => {
@@ -47,13 +51,11 @@ const Bet = () => {
         </div>
         <div className='flex justify-between items-start content-start gap-[10.561px] self-stretch flex-wrap'>
           <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
-          <BettingCard/>
+          <BettingCard1/>
+          <BettingCard2/>
+          <BettingCard3/>
+         
+          
         </div>
    </>
   )

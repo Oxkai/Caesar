@@ -33,6 +33,16 @@ export default function Header() {
       >
         Home
       </NavLink>
+       <NavLink
+        to="/property"
+        className={({ isActive }) =>
+          `${navLinkClass} ${
+            isActive ? "text-white " : "text-white/50 hover:text-white"
+          }`
+        }
+      >
+        Property
+      </NavLink>
 
       <NavLink
         to="/bet"
@@ -44,18 +54,6 @@ export default function Header() {
       >
         Bet
       </NavLink>
-
-      <NavLink
-        to="/property"
-        className={({ isActive }) =>
-          `${navLinkClass} ${
-            isActive ? "text-white " : "text-white/50 hover:text-white"
-          }`
-        }
-      >
-        Property
-      </NavLink>
-
       <NavLink
         to="/kyc"
         className={({ isActive }) =>

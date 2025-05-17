@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import Header from './components/header'
-import BettingCard from './components/bettingCard'
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { WalletProvider } from "./components/WalletContext";
 import './App.css'
 import Home from './routes/home'
 import Property from './routes/property'
-import Swap from './routes/bet'
+
 import KYC from './routes/kyc'
 import Bet from './routes/bet';
 import Documents from './routes/documents';

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import myImage from '../../assets/d.png'
 
 
 function PropertyCard() {
@@ -30,7 +31,14 @@ function PropertyCard() {
             </svg>
           </div>
           {/* Rectangle instead of image */}
-          <div className="w-[214px] h-[213px] rounded-[7px] bg-[rgba(37,208,171,0.2)]"></div>
+         <img 
+                   src={myImage}
+                       alt="Property"
+         
+                 width={214} 
+                 height={213} 
+                 className="w-[214px] h-[213px] rounded-[7px] bg-[rgba(37,208,171,0.2)] flex items-center justify-center overflow-hidden"
+               />
           <div className="flex items-center gap-[10px] self-stretch">
             <svg
               xmlns="http://www.w3.org/2000/svg"

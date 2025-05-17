@@ -1,6 +1,7 @@
 import { useState } from "react";
+import myImage from '../../assets/6.png'
 
-function BettingCard() {
+function BettingCard1() {
   const [showPopup, setShowPopup] = useState(false);
 
   // Function to close the popup
@@ -25,7 +26,14 @@ function BettingCard() {
             </svg>
           </div>
           {/* Rectangle instead of image */}
-          <div className="w-[214px] h-[213px] rounded-[7px] bg-[rgba(37,208,171,0.2)]"></div>
+         <img 
+                   src={myImage}
+                       alt="Property"
+         
+                 width={214} 
+                 height={213} 
+                 className="w-[214px] h-[213px] rounded-[7px] bg-[rgba(37,208,171,0.2)] flex items-center justify-center overflow-hidden"
+               />
           <div className="flex items-center gap-[10px] self-stretch">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +51,7 @@ function BettingCard() {
         <div className="px-[9px] flex flex-col items-start gap-[18px] self-stretch">
           <div className="flex flex-col items-start self-stretch">
             <p className="self-stretch text-[#25D0AB] font-['Amina'] text-xl leading-[27px] tracking-[-0.5px]">
-              Will RCB will win the finals ?
+              Will Joe Biden run for re-election in 2028?
             </p>
           </div>
         </div>
@@ -51,17 +59,17 @@ function BettingCard() {
         {/* Progress Bar Section */}
         <div className="flex flex-col items-center gap-[6px] self-stretch">
           <div className="w-[228px] h-[5.086px] flex flex-col items-start bg-[#1c1c1c]">
-            <div className="w-[88.134px] h-[5.086px] flex-shrink-0 bg-[#25D0AB]"></div>
+            <div className="w-[40.134px] h-[5.086px] flex-shrink-0 bg-[#25D0AB]"></div>
           </div>
           <div className="flex justify-between items-start px-[5px] self-stretch">
             <div className="w-[115.5px] flex flex-col items-start gap-[3px]">
               <p className="self-stretch text-[#25D0AB] font-['Amina'] text-[12px] leading-[20px]">
-                51%
+                20%
               </p>
             </div>
             <div className="w-[94.6px] flex flex-col items-start gap-[3px]">
               <p className="self-stretch text-[#ededed] text-right font-['Amina'] text-[12px] leading-[20px]">
-                49%
+                80%
               </p>
             </div>
           </div>
@@ -84,12 +92,12 @@ function BettingCard() {
           <div className="flex justify-between items-start self-stretch">
             <div className="w-[115.5px] flex flex-col items-start gap-[3px]">
               <p className="self-stretch text-[#ededed] font-['Amina'] text-[12px] leading-[20px]">
-                $5,000
+                $140
               </p>
             </div>
             <div className="w-[94.6px] flex flex-col items-start gap-[3px]">
               <p className="self-stretch text-[#ededed] text-right font-['Amina'] text-[12px] leading-[20px]">
-                $3,000
+                $560
               </p>
             </div>
           </div>
@@ -181,4 +189,4 @@ function BettingCard() {
   );
 }
 
-export default BettingCard;
+export default BettingCard1;

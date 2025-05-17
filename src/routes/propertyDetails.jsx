@@ -4,7 +4,7 @@ import propertyABI from "../contracts/propertyABI.json";
 import { ethers, parseEther, formatEther } from "ethers";
 import { useWallet } from "../components/WalletContext";
 
-const PROPERTY_CONTRACT_ADDRESS = "0x18c315d33339fd9604D80825ae770B5726a8F361";
+const PROPERTY_CONTRACT_ADDRESS = "0x71d98b9f0D6327489F9A81152Fb3812f43A492bb";
 
 const PropertyDetails = () => {
   const { walletAddress, signer, connectWallet } = useWallet();
@@ -12,6 +12,7 @@ const PropertyDetails = () => {
   const [investAmount, setInvestAmount] = useState("");
   const [txStatus, setTxStatus] = useState("");
   const [contract, setContract] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   // Instantiate contract when signer is ready
   useEffect(() => {
@@ -27,25 +28,49 @@ const PropertyDetails = () => {
     }
   }, [signer]);
 
-  // Fetch property metadata
+  // Fetch property metadata and additional details
   useEffect(() => {
     const fetchMetadata = async () => {
       if (!contract) return;
       try {
-        const data = await contract.getPropertyMetadata();
+        const [
+          propertyName,
+          tokenAddress,
+          valuation,
+          totalInvestment,
+          tokenSupply,
+          totalSuppliedTokens,
+          apyPercent,
+          investors,
+        ] = await Promise.all([
+          contract.propertyName(),
+          contract.getTokenAddress(),
+          contract.valuation(),
+          contract.totalInvestment(),
+          contract.tokenSupply(),
+          contract.totalSuppliedTokens(),
+          contract.apyPercent(),
+          contract.getAllInvestors(),
+        ]);
+
+        const investorCount = investors.length;
+
         setMetadata({
-          propertyName: data[0],
-          description: data[1],
-          valuation: formatEther(data[2]),      // use formatEther directly
-          apyPercent: data[3].toString(),
-          tokenSupply: data[4].toString(),
-          totalSuppliedTokens: data[5].toString(),
-          totalInvestment: formatEther(data[6]), // use formatEther directly
+          propertyName,
+          tokenAddress,
+          valuation: formatEther(valuation),
+          totalInvestment: formatEther(totalInvestment),
+          tokenSupply: tokenSupply.toString(),
+          totalSuppliedTokens: totalSuppliedTokens.toString(),
+          apyPercent: apyPercent.toString(),
+          investorCount,
+          investors,
         });
       } catch (error) {
         console.error("Error fetching metadata:", error);
       }
     };
+
     fetchMetadata();
   }, [contract]);
 
@@ -73,22 +98,45 @@ const PropertyDetails = () => {
 
     try {
       const tx = await contract.invest({
-        value: parseEther(investAmount), // use parseEther directly
+        value: parseEther(investAmount),
       });
       await tx.wait();
       setTxStatus("Investment successful!");
       setInvestAmount("");
 
       // Refresh metadata after successful investment
-      const updatedData = await contract.getPropertyMetadata();
+      const [
+        propertyName,
+        tokenAddress,
+        valuation,
+        totalInvestment,
+        tokenSupply,
+        totalSuppliedTokens,
+        apyPercent,
+        investors,
+      ] = await Promise.all([
+        contract.propertyName(),
+        contract.getTokenAddress(),
+        contract.valuation(),
+        contract.totalInvestment(),
+        contract.tokenSupply(),
+        contract.totalSuppliedTokens(),
+        contract.apyPercent(),
+        contract.getAllInvestors(),
+      ]);
+
+      const investorCount = investors.length;
+
       setMetadata({
-        propertyName: updatedData[0],
-        description: updatedData[1],
-        valuation: formatEther(updatedData[2]),
-        apyPercent: updatedData[3].toString(),
-        tokenSupply: updatedData[4].toString(),
-        totalSuppliedTokens: updatedData[5].toString(),
-        totalInvestment: formatEther(updatedData[6]),
+        propertyName,
+        tokenAddress,
+        valuation: formatEther(valuation),
+        totalInvestment: formatEther(totalInvestment),
+        tokenSupply: tokenSupply.toString(),
+        totalSuppliedTokens: totalSuppliedTokens.toString(),
+        apyPercent: apyPercent.toString(),
+        investorCount,
+        investors,
       });
     } catch (error) {
       console.error(error);
@@ -96,7 +144,8 @@ const PropertyDetails = () => {
     }
   };
 
-    const [showPopup, setShowPopup] = useState(false);
+
+    
     
       // Function to close the popup
       const handleClose = () => {
@@ -189,7 +238,7 @@ const PropertyDetails = () => {
             {/* Investment Amount */}
             <div className="w-[295px] py-4 flex flex-col items-center gap-4">
               <h2 className="self-stretch text-white text-center font-['Amina'] text-4xl font-normal leading-[27.871px]">
-                11 ETH
+                 ETH
               </h2>
               <div className="w-[269px] h-1.5 px-0.5 flex flex-col items-start gap-2.5 bg-[#1C1C1C]">
                 <div className="w-[103.983px] h-1.5 flex-shrink-0 bg-[#25D0AB]" />
@@ -211,7 +260,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Sui
+                      Base Sepolia
                     </p>
                   </div>
                 </div>
@@ -224,7 +273,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      PROP01
+                      Prop
                     </p>
                   </div>
                 </div>
@@ -237,7 +286,7 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      0x5b453...3a
+                      {PROPERTY_CONTRACT_ADDRESS.slice(0, 6)}...{PROPERTY_CONTRACT_ADDRESS.slice(-2)}
                     </p>
                   </div>
                 </div>
@@ -321,6 +370,11 @@ const PropertyDetails = () => {
                 Invest
               </span>
             </button>
+            <button onClick={() => setShowPopup(true)} className="flex flex-row w-[319px] h-[49px] justify-center items-center gap-3 rounded ">
+              <span className=" text-white text-center font-['Amina'] text-[18px] font-normal leading-[30.637px] capitalize">
+                Redeem
+              </span>
+            </button>
 
 
 
@@ -347,7 +401,7 @@ const PropertyDetails = () => {
                   {/* Form Section */}
                   <div className="py-8 px-5 flex flex-col justify-center items-start gap-3.5">
                     <h2 className="w-full text-[#25D0AB] font-['Amina'] text-3xl font-normal leading-9">
-                      Enter the amount u want to bet?
+                      Enter the amount u want to Invest?
                     </h2>
 
                     <p className="w-[279px] text-white/60 font-['Amina'] text-base font-normal leading-7">
@@ -368,7 +422,7 @@ const PropertyDetails = () => {
                     {/* Bet Button */}
                     <button  onClick={invest} className="flex flex-row w-[319px] h-12 justify-center items-center gap-3 rounded bg-white">
                       <span className="text-black text-center font-['Amina'] text-xl font-normal leading-8 capitalize">
-                        BET
+                        Invest
                       </span>
                     </button>
 

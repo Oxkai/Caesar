@@ -1,6 +1,6 @@
 
 import React from 'react'
-import BettingCard from '../components/bettingCard'
+
 import propertyImage from '../assets/back.png';
 
 const Home = () => {
