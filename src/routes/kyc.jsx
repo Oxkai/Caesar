@@ -7,7 +7,7 @@ import {
 import SwapWidget from '../components/SwapWidget';
 
 
-
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
 const KYC = () => {
   
@@ -18,9 +18,10 @@ const KYC = () => {
 
   return (
     <div>
-      <div className="App">
+      {/* <div className="App">
       <SwapWidget/>
-    </div>
+    </div> */}
+    <WormholeConnect />
     </div>
   )
 }
