@@ -17,8 +17,8 @@ function PropertyCard2() {
   };
 
   return (
-    <div className="flex items-center p-[6px] gap-[10px] rounded-[9px] border border-solid border-[#343434]">
-      <div className="w-[254px] p-3 flex flex-col justify-center items-center gap-[15px] rounded-[5px] border border-solid border-[#1c1c1c]">
+ <div className="flex items-center p-[6px] gap-[10px] rounded-[9px] border border-solid border-[#343434] hover:border-[#505050]  transform transition-all duration-300 ease-in-out ">
+      <div className="w-[254px] p-3 flex flex-col justify-center items-center gap-[15px] rounded-[5px] border border-solid border-[#1c1c1c] hover:border-[#343434] transform transition-all duration-300 ease-in-out">
         {/* Image Section with Vector2 */}
         <div className="w-[230px] flex flex-col justify-center items-center">
           <div className="flex justify-end items-center gap-[10px] self-stretch">
@@ -68,28 +68,28 @@ function PropertyCard2() {
       {/* Stats Section with Labels and Values */}
       <div className="flex flex-row justify-between items-start w-full">
         {/* Labels Column */}
-        <div className="w-[116px] flex flex-col items-start gap-0.5">
-          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-xs font-normal leading-5">
-            Token supply :
+        <div className="w-[116px] flex flex-col items-start gap-[7px]">
+          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-[14px] font-normal leading-5">
+            Contract:
           </p>
-          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-xs font-normal leading-5">
+          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-[14px] font-normal leading-5">
             Valuation :
           </p>
-          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-xs font-normal leading-5">
+          <p className="w-full text-[#EDEDED]/60 font-['Amina'] text-[14px] font-normal leading-5">
             APY% :
           </p>
         </div>
         
         {/* Values Column */}
-        <div className="w-[95px] flex flex-col items-start gap-0.5">
-          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-xs font-normal leading-5">
-            54000
+        <div className="w-[95px] flex flex-col items-start gap-[7px]">
+          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-[14px] font-normal leading-5">
+            0x9876...123
           </p>
-          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-xs font-normal leading-5">
-            42 ETH
+          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-[14px] font-normal leading-5">
+            1600 Sui
           </p>
-          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-xs font-normal leading-5">
-            11%
+          <p className="w-full text-[#EDEDED]/60 text-right font-['Amina'] text-[14px] font-normal leading-5">
+            14%
           </p>
         </div>
       </div>

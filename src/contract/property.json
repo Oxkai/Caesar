@@ -1,0 +1,10 @@
+{
+  "name": "Deep Villa",
+  "description": "Luxury villa in New Delhi designed by Atrey & Associates.",
+  "image": "https://amazingarchitecture.com/storage/files/1/Architecture%20firms/Atrey%20&%20Associates/Deep%20Villa/08.1-Deep-Villa-Atrey-and-Associates-New-Delhi-ndia-Amazing-Architecture.jpg",
+  "attributes": [
+    { "trait_type": "Property Type", "value": "Villa" },
+    { "trait_type": "Size (sqft)", "value": 1200 },
+    { "trait_type": "Price", "value": 1500000 }
+  ]
+}

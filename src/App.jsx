@@ -7,10 +7,11 @@ import './App.css'
 import Home from './routes/home'
 import Property from './routes/property'
 
-import KYC from './routes/kyc'
 import Bet from './routes/bet';
 import Documents from './routes/documents';
 import PropertyDetails from './routes/propertyDetails';
+import Swap from './routes/Swap';
+
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
           <Route path="/bet" element={<Bet />} >
        
           </Route>
-          <Route path="/kyc" element={<KYC />} />
+          <Route path="/swap" element={<Swap/>} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/propertyDetails" element={<PropertyDetails />} />
         </Routes>

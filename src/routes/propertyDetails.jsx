@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import propertyImage from "../assets/property.png";
 
@@ -40,34 +41,65 @@ const PropertyDetails = () => {
   };
 
   const invest = async () => {
-    if (!wallet.connected) return alert("Connect wallet first!");
-    if (coins.length === 0) return alert("No SUI coins found!");
+    console.log("🟢 Starting invest()");
+
+    if (!wallet.connected) {
+      alert("Connect your wallet!");
+      console.log("🔴 Wallet not connected.");
+      return;
+    }
+
+    console.log("🟢 Wallet connected:", wallet);
+
+    if (coins.length === 0) {
+      alert("No SUI coins found!");
+      console.log("🔴 No coins found.");
+      return;
+    }
+
+    console.log("🟢 Coins:", coins);
 
     const coinObjectId = coins[0].coinObjectId;
+    console.log("🟢 Using coinObjectId:", coinObjectId);
+
+    const investAmount = 100000000; // 0.1 SUI in MIST as a number (u64)
+    console.log("🟢 Invest amount (u64 MIST):", investAmount);
 
     const tx = new Transaction();
-    tx.moveCall({
-      target: `${PACKAGE_ID}::property_investment::invest`,
-      arguments: [
-        tx.object(PROPERTY_OBJECT_ID),
-        tx.object(coinObjectId),
-        tx.pure(investAmount),
-      ],
-    });
+    console.log("🟢 Transaction object created:", tx);
 
-    setLoading(true);
     try {
-      const result = await wallet.signAndExecuteTransactionBlock({
-        transactionBlock: tx,
+      console.log("🟢 Adding moveCall to transaction");
+      tx.moveCall({
+        target: `${PACKAGE_ID}::property_investment::invest`,
+        arguments: [
+          tx.object(PROPERTY_OBJECT_ID),
+          tx.object(coinObjectId),
+          tx.pure.u64(investAmount), // no toString here, just number
+        ],
       });
-      console.log("✅ Investment tx result:", result);
-      alert("Investment successful!");
+
+      console.log("🟢 moveCall added:", tx);
+
+      setLoading(true);
+      console.log(
+        "🟢 Sending transaction to wallet for signing and execution..."
+      );
+
+      const result = await wallet.signAndExecuteTransaction({
+        transaction: tx,
+      });
+
+      console.log("✅ Investment successful:", result);
+      alert("Investment done!");
+
       fetchPropertyInfo();
     } catch (error) {
-      console.error(error);
-      alert("Transaction failed.");
+      console.error("🔴 Error during investment:", error);
+      alert("Failed to invest.");
     } finally {
       setLoading(false);
+      console.log("🟢 invest() finished.");
     }
   };
 
@@ -185,15 +217,42 @@ const PropertyDetails = () => {
           <div className="py-[30px] px-5 flex flex-col items-center gap-4 flex-grow flex-shrink-0 flex-basis-0">
             {/* Investment Amount */}
             <div className="w-[295px] py-4 flex flex-col items-center gap-4">
-              <h2 className="self-stretch text-white text-center font-['Amina'] text-4xl font-normal leading-[27.871px]">
-                10 ETH
-              </h2>
+              {propertyInfo ? (
+                <h2 className="self-stretch text-white text-center font-['Amina'] text-4xl font-normal leading-[27.871px]">
+                  {propertyInfo.data.content.fields.valuation / 1000000000} Sui
+                </h2>
+              ) : (
+                <></>
+              )}
+
               <div className="w-[269px] h-1.5 px-0.5 flex flex-col items-start gap-2.5 bg-[#1C1C1C]">
-                <div className="w-[60.983px] h-1.5 flex-shrink-0 bg-[#25D0AB]" />
+                {propertyInfo ? (
+                  <div
+                    style={{
+                      width: `${
+                        ((propertyInfo.data.content.fields.total_invested /
+                          1e9) *
+                          295) /
+                        (propertyInfo.data.content.fields.valuation / 1e9)
+                      }px`,
+                    }}
+                    className="h-1.5 flex-shrink-0 bg-[#25D0AB]"
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
-              <p className="self-stretch text-white text-center font-['Amina'] text-sm font-normal leading-[27.871px]">
-                Raised 2.01 ETH of 10 ETH
-              </p>
+
+              {propertyInfo ? (
+                <p className="self-stretch text-white text-center font-['Amina'] text-sm font-normal leading-[27.871px]">
+                  Raised{" "}
+                  {propertyInfo.data.content.fields.total_invested / 1000000000}{" "}
+                  Sui of{" "}
+                  {propertyInfo.data.content.fields.valuation / 1000000000} Sui
+                </p>
+              ) : (
+                <></>
+              )}
             </div>
 
             {/* Investment Details */}
@@ -208,34 +267,50 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Base Sepolia
+                      Sui Devnet
                     </p>
                   </div>
                 </div>
-
                 <div className="flex flex-row justify-between items-start self-stretch">
                   <div className="w-[161.655px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Token :
+                      Owner Address :
                     </p>
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Prop
-                    </p>
+                    {propertyInfo ? (
+                      <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
+                        {`${propertyInfo.data.content.fields.owner.slice(
+                          0,
+                          6
+                        )}...${propertyInfo.data.content.fields.owner.slice(
+                          -4
+                        )}`}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
-
                 <div className="flex flex-row justify-between items-start self-stretch">
                   <div className="w-[161.655px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Address :
+                      ID :
                     </p>
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      0x59c9a...564
-                    </p>
+                    {propertyInfo ? (
+                      <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
+                        {`${propertyInfo.data.content.fields.id.id.slice(
+                          0,
+                          6
+                        )}...${propertyInfo.data.content.fields.id.id.slice(
+                          -4
+                        )}`}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>
@@ -250,20 +325,13 @@ const PropertyDetails = () => {
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
                     <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      10 ETH
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-row justify-between items-start self-stretch">
-                  <div className="w-[161.655px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      Token Supply :
-                    </p>
-                  </div>
-                  <div className="w-[132.39px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      100000
+                      {propertyInfo ? (
+                        <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
+                          {propertyInfo.data.content.fields.valuation} MIST
+                        </p>
+                      ) : (
+                        <></>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -275,9 +343,13 @@ const PropertyDetails = () => {
                     </p>
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      10%
-                    </p>
+                    {propertyInfo ? (
+                      <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
+                        {propertyInfo.data.content.fields.api_percent}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>
@@ -291,9 +363,13 @@ const PropertyDetails = () => {
                     </p>
                   </div>
                   <div className="w-[132.39px] flex flex-col items-start gap-1">
-                    <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
-                      5
-                    </p>
+                    {propertyInfo ? (
+                      <p className="self-stretch text-[#EDEDED]/60 text-right font-['Amina'] text-[16.723px] font-normal leading-[27.871px]">
+                        {propertyInfo.data.content.fields.shareholders}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
 
@@ -372,7 +448,10 @@ const PropertyDetails = () => {
                       />
 
                       {/* Bet Button */}
-                      <button className="flex flex-row w-[319px] h-12 justify-center items-center gap-3 rounded bg-white">
+                      <button
+                        onClick={invest}
+                        className="flex flex-row w-[319px] h-12 justify-center items-center gap-3 rounded bg-white"
+                      >
                         <span className="text-black text-center font-['Amina'] text-xl font-normal leading-8 capitalize">
                           Invest
                         </span>

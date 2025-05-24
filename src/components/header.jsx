@@ -44,7 +44,7 @@ export default function Header() {
               }`
             }
           >
-            Property
+            RWA
           </NavLink>
           <NavLink
             to="/bet"
@@ -54,10 +54,10 @@ export default function Header() {
               }`
             }
           >
-            Bet
+            P2P
           </NavLink>
           <NavLink
-            to="/kyc"
+            to="/swap"
             className={({ isActive }) =>
               `${navLinkClass} ${
                 isActive ? "text-white" : "text-white/50 hover:text-white"
@@ -74,7 +74,7 @@ export default function Header() {
               }`
             }
           >
-            Documents
+            Tokenization
           </NavLink>
         </div>
 
