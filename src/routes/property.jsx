@@ -11,7 +11,8 @@ const Property = () => {
     <div className="flex flex-row justify-between items-center w-full">
           {/* Bets Title */}
           <div className="flex flex-row py-0 px-4 justify-center items-center gap-2.5">
-            <span className="text-white font-['Amina'] text-4xl font-normal leading-7">
+               
+            <span className="text-teal-400 text-4xl font-semibold leading-7 font-['rajdhani']">
               RWA Listed Properties
             </span>
           </div>
@@ -40,9 +41,9 @@ const Property = () => {
         </div>
         <div className='flex justify-between items-start content-start gap-[10.561px] self-stretch flex-wrap'>
          <PropertyCard/>
-         <PropertyCard1/>
+         {/* <PropertyCard1/>
          <PropertyCard2/>
-         <PropertyCard3/>
+         <PropertyCard3/> */}
 
 
 

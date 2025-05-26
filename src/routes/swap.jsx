@@ -1,26 +1,19 @@
-
-import React from 'react'
-import {
-  ConnectButton,
-  WalletProvider,
-} from '@suiet/wallet-kit';
-import SwapWidget from '../components/SwapWidget';
-
-
+import React from 'react';
 import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
+const theme = {
+  mode: 'dark',
+  primary: '#25D0AB',
+  secondary: '#25D0AB',
+  font: 'Amina, sans-serif',
+};
+
 const Swap = () => {
-  
-
-
-
-
-
   return (
-   
-    <WormholeConnect />
-   
-  )
-}
+    <div className="-mt-24">
+      <WormholeConnect theme={theme} />
+    </div>
+  );
+};
 
-export default Swap
+export default Swap;

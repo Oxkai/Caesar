@@ -7,11 +7,11 @@ import { getFullnodeUrl, SuiClient } from "@mysten/sui.js/client";
 import { Transaction } from "@mysten/sui/transactions";
 
 const PACKAGE_ID =
-  "0x139d93535258c46fc3b94cdbf1de315ece4f37420ccd0f52669685c3b030c474";
+  "0xb93685fac97a5abd894f603a9466c5ca36425bcd3592457db9ba7ac08d5e21d0";
 const PROPERTY_OBJECT_ID =
-  "0x574cb059b87f3b7efb5fc24d2a159e13cce8bd1a76c8f89837c506ee0cab099c";
+  "0x501b015b8d13422216806ec7a2cc57d1b3d78b1bfc0032b092d35e215828f7a7";
 
-const client = new SuiClient({ url: getFullnodeUrl("devnet") });
+const client = new SuiClient({ url: getFullnodeUrl("testnet") });
 
 function decodeAsciiArray(arr) {
   if (!Array.isArray(arr)) return arr;

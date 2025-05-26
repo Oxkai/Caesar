@@ -30,7 +30,7 @@ const Documents = () => {
       const documentIpfsHash = "bafybeifhdgh2qjzlb4jnofnesdzrb7w4pvvigkxkrfoh25boxh4gmq5pp4";
       const imageUrl = "https://gateway.pinata.cloud/ipfs/bafybeibonvyfxprzp5xetg4jfps7cawjdretax37hq7uwidevwjdv2erxe";
 
-      const PACKAGE_ID = "0xf47b0c6633a1826e8bb09f6d9b8147cd2fef55341696311690b977f4a3a70be9";
+      const PACKAGE_ID = "0xcf1f3132159889341a0832f0d786cc87cbd8890ed269abea694c59f040cd9979";
       const MODULE_NAME = "property_nft";
       const FUNCTION_NAME = "mint_property_nft";
 
@@ -59,7 +59,8 @@ const Documents = () => {
       });
 
       console.log("✅ NFT Minted:", result);
-      alert("NFT minted successfully!");
+      alert("NFT minted successfully!", result);
+
     } catch (error) {
       console.error("Error minting property NFT:", error);
       alert(`Failed to mint NFT: ${error.message}`);
