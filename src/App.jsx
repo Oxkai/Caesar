@@ -10,8 +10,7 @@ import Property from './routes/property'
 import Bet from './routes/bet';
 import Documents from './routes/documents';
 import PropertyDetails from './routes/propertyDetails';
-import Swap from './routes/Swap';
-
+import Swap from './routes/swap';
 
 
 
