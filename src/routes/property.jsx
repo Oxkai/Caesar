@@ -1,10 +1,8 @@
 
 import React from 'react'
-import BettingCard from '../components/bettingCards/bettingCard'
+
 import PropertyCard from '../components/CARD/propertyCard'
-import PropertyCard1 from '../components/CARD/propertyCard1'
-import PropertyCard2 from '../components/CARD/propertyCard2'
-import PropertyCard3 from '../components/CARD/propertyCard3'
+
 const Property = () => {
   return (
    <>
@@ -41,10 +39,7 @@ const Property = () => {
         </div>
         <div className='flex justify-between items-start content-start gap-[10.561px] self-stretch flex-wrap'>
          <PropertyCard/>
-         {/* <PropertyCard1/>
-         <PropertyCard2/>
-         <PropertyCard3/> */}
-
+     
 
 
         
